@@ -14,6 +14,9 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app) # <-- 2. Inicializamos Bcrypt
+# Forzar la creación de tablas para Render/Gunicorn
+with app.app_context():
+    db.create_all()
 # ==========================================
 # MOTOR DE SEGURIDAD AES-256
 # ==========================================
